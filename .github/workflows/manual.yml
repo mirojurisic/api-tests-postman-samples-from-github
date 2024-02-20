@@ -1,0 +1,41 @@
+name: CalcAdapter manual trigger
+on: 
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  steps:
+  
+  - name: Check out Git repositor
+    uses: actions/checkout@v1
+  - name: Set up Node.js
+    uses: actions/setup-node@v1
+    with:
+      node-version: '20.x'
+
+  - name: Install dependencies
+    run: npm install
+
+  - name: Install newman
+    run: | 
+      npm install -g newman
+      npm install -g newman-reporter-htmlextra
+
+  - name: Make Directory for results
+    run: mkdir -p testResults
+
+  # Run the POSTMAN collection
+  # TODO: replace collection file with real .json collection file
+  # TODO: replace envirnment file with real .json environment file
+  - name: Run POSTMAN collection
+  - working-directory: ./PublicSOAP_APIs
+    run: |
+      newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+
+  # Upload the contents of Test Results directory to workspace
+  - name: Output the run Details
+    uses: actions/upload-artifact@v2
+    with:
+      name: RunReports
+      path: testResults
