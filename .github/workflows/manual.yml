@@ -2,7 +2,7 @@ name: CalcAdapter manual trigger
 on: 
   workflow_dispatch
 jobs:
-  build:
+  test-job:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repositor
@@ -17,11 +17,7 @@ jobs:
         run: | 
           npm install -g newman
           npm install -g newman-reporter-htmlextra
-  
-    
-      # Run the POSTMAN collection
-      # TODO: replace collection file with real .json collection file
-      # TODO: replace envirnment file with real .json environment file
+          
       - name: Run POSTMAN collection
         working-directory: ./PublicSOAP_APIs
         run: |
