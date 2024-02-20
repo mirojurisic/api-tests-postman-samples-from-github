@@ -17,9 +17,7 @@ jobs:
         run: | 
           npm install -g newman
           npm install -g newman-reporter-htmlextra
-    
-      - name: Make Directory for results
-        run: mkdir -p testResults
+  
     
       # Run the POSTMAN collection
       # TODO: replace collection file with real .json collection file
@@ -27,11 +25,13 @@ jobs:
       - name: Run POSTMAN collection
         working-directory: ./PublicSOAP_APIs
         run: |
+          mkdir -p testResults
           newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
     
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
+        working-directory: ./PublicSOAP_APIs
         with:
           name: RunReports
           path: testResults
