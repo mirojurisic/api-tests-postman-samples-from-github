@@ -28,7 +28,7 @@ jobs:
       # TODO: replace collection file with real .json collection file
       # TODO: replace envirnment file with real .json environment file
       - name: Run POSTMAN collection
-      - working-directory: ./PublicSOAP_APIs
+        working-directory: ./PublicSOAP_APIs
         run: |
           newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
     
