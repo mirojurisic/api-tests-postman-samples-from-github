@@ -31,7 +31,6 @@ jobs:
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
-        working-directory: ./PublicSOAP_APIs
         with:
           name: RunReports
-          path: testResults
+          path: ./PublicSOAP_APIs/testResults
