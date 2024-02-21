@@ -28,43 +28,43 @@ jobs:
         run: |
           echo $CLIENT_SECRET
           echo $CLIENT_ID
-          mkdir testResults
-          newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          mkdir -p PublicSOAPtestResults
+          newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export PublicSOAPtestResults/htmlreport.html --reporter-htmlextra-darkTheme  > PublicSOAPtestResults/runreport1.html
     
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
           name: RunReports_PublicSOAP_APIs
-          path: ./PublicSOAP_APIs/testResults
+          path: ./PublicSOAP_APIs/PublicSOAPtestResults
 
 ################################################
 
       - name: test BookCartAPI POSTMAN collection
         working-directory: ./BookCartAPI
         run: |
-          mkdir testResults
-          newman run BookCartAPI.postman_collection.json -e bookcart.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          mkdir -p BookCarttestResults
+          newman run BookCartAPI.postman_collection.json -e bookcart.postman_environment.json -r htmlextra --reporter-htmlextra-export BookCarttestResults/htmlreport.html --reporter-htmlextra-darkTheme  > BookCarttestResults/runreport1.html
 
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
           name: RunReports_BookCartAPI
-          path: ./BookCartAPI/testResults
+          path: ./BookCartAPI/BookCarttestResults
 
 ###############################################
 
       - name: test LibraryAPI POSTMAN collection
         working-directory: ./LibraryAPI
         run: |
-          mkdir testResults
-          newman run LibraryAPIReference.postman_collection.json -e library.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          mkdir -p LibrarytestResults
+          newman run LibraryAPIReference.postman_collection.json -e library.postman_environment.json -r htmlextra --reporter-htmlextra-export LibrarytestResults/htmlreport.html --reporter-htmlextra-darkTheme  > LibrarytestResults/runreport1.html
     
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
           name: RunReports_BookCartAPI
-          path: ./LibraryAPI/testResults
+          path: ./LibraryAPI/LibrarytestResults
       
