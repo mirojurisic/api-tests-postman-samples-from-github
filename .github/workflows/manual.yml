@@ -24,6 +24,8 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
         run: |
+          echo $CLIENT_SECRET
+          echo $CLIENT_ID
           mkdir -p testResults
           newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
     
