@@ -18,6 +18,8 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-htmlextra
           
+#######################################################          
+
       - name: test PublicSOAP_APIs POSTMAN collection
         working-directory: ./PublicSOAP_APIs
         env:
@@ -36,29 +38,33 @@ jobs:
           name: RunReports
           path: ./PublicSOAP_APIs/testResults
 
-      - name: test PublicSOAP_APIs POSTMAN collection
-        working-directory: ./PublicSOAP_APIs
+################################################
+
+      - name: test BookCartAPI POSTMAN collection
+        working-directory: ./BookCartAPI
         run: |
           mkdir -p testResults
-          newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          newman run BookCartAPI.postman_collection.json -e bookcart.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
     
-      # # Upload the contents of Test Results directory to workspace
-      # - name: Output the run Details
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: RunReports
-      #     path: ./PublicSOAP_APIs/testResults
+      # Upload the contents of Test Results directory to workspace
+      - name: Output the run Details
+        uses: actions/upload-artifact@v2
+        with:
+          name: RunReports
+          path: ./BookCartAPI/testResults
 
-      # - name: test PublicSOAP_APIs POSTMAN collection
-      #   working-directory: ./PublicSOAP_APIs
-      #   run: |
-      #     mkdir -p testResults
-      #     newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+###############################################
+
+      - name: test LibraryAPI POSTMAN collection
+        working-directory: ./LibraryAPI
+        run: |
+          mkdir -p testResults
+          newman run LibraryAPIReference.postman_collection.json -e library.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
     
-      # # Upload the contents of Test Results directory to workspace
-      # - name: Output the run Details
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: RunReports
-      #     path: ./PublicSOAP_APIs/testResults
+      # Upload the contents of Test Results directory to workspace
+      - name: Output the run Details
+        uses: actions/upload-artifact@v2
+        with:
+          name: RunReports
+          path: ./LibraryAPI/testResults
       
