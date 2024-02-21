@@ -35,7 +35,7 @@ jobs:
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
-          name: RunReports
+          name: RunReports_PublicSOAP_APIs
           path: ./PublicSOAP_APIs/testResults
 
 ################################################
@@ -50,7 +50,7 @@ jobs:
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
-          name: RunReports
+          name: RunReports_BookCartAPI
           path: ./BookCartAPI/testResults
 
 ###############################################
@@ -65,6 +65,6 @@ jobs:
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
-          name: RunReports
+          name: RunReports_BookCartAPI
           path: ./LibraryAPI/testResults
       
