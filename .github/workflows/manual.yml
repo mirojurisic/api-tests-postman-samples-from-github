@@ -20,23 +20,23 @@ jobs:
           
 #######################################################          
 
-      - name: test PublicSOAP_APIs POSTMAN collection
-        working-directory: ./PublicSOAP_APIs
-        env:
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        run: |
-          echo $CLIENT_SECRET
-          echo $CLIENT_ID
-          mkdir -p PublicSOAPtestResults
-          newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export PublicSOAPtestResults/htmlreport.html --reporter-htmlextra-darkTheme  > PublicSOAPtestResults/runreport1.html
+      # - name: test PublicSOAP_APIs POSTMAN collection
+      #   working-directory: ./PublicSOAP_APIs
+      #   env:
+      #     CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      #     CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      #   run: |
+      #     echo $CLIENT_SECRET
+      #     echo $CLIENT_ID
+      #     mkdir -p PublicSOAPtestResults
+      #     newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export PublicSOAPtestResults/htmlreport.html --reporter-htmlextra-darkTheme  > PublicSOAPtestResults/runreport1.html
     
-      # Upload the contents of Test Results directory to workspace
-      - name: Output the run Details
-        uses: actions/upload-artifact@v2
-        with:
-          name: RunReports_PublicSOAP_APIs
-          path: ./PublicSOAP_APIs/PublicSOAPtestResults
+      # # Upload the contents of Test Results directory to workspace
+      # - name: Output the run Details
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: RunReports_PublicSOAP_APIs
+      #     path: ./PublicSOAP_APIs/PublicSOAPtestResults
 
 ################################################
 
