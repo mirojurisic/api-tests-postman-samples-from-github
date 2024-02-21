@@ -20,6 +20,9 @@ jobs:
           
       - name: test PublicSOAP_APIs POSTMAN collection
         working-directory: ./PublicSOAP_APIs
+        env:
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
         run: |
           mkdir -p testResults
           newman run PublicSOAPAPIs.postman_collection.json -e publicSOAP.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
